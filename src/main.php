@@ -1,9 +1,13 @@
-<?php 
+<?php
 
-namespace MeuProjeto\Login;
+// Inclui o autoload do Composer
+require __DIR__ . "/../../vendor/autoload.php";
 
-include __DIR__ . "/../vendor/autoload.php";
+// Usa a classe Login do namespace MeuProjeto\Login
+use MeuProjeto\Login\Login;
 
-$task = new Login();
+// Cria uma instância da classe Login
+$login = new Login();
 
-var_dump($login);
+// Verifica o login (se o formulário foi enviado)
+$login->verificarLogin();

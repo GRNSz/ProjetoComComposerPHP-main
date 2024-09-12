@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faça seu Login</title>
-
-<body>
-    
-    <h1>Faça seu Login ou se Cadastre abaixo: </h1><br>
-
+    <title>Faça seu Login</title> 
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,39 +52,34 @@
             opacity: 0.8;
         }
     </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Faça seu Login ou se Cadastre abaixo: </h1><br>
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <input type="text" name="usuario" placeholder="Digite o nome do Usuario" required>
+            <input type="password" name="senha" placeholder="Digite a Senha" required>
+            <div>
+                <button type="submit" class="login-btn">Login</button>
+                <button type="button" class="register-btn">Cadastrar</button>
+            </div>
+        </form>
 
-            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            
-                    <input type="text" placeholder="usuario" required>
-                    <input type="password" placeholder="senha" required>
-           
-                <div>
-                           
-                    <button type="submit" class="login-btn">Login</button>
-                    <button type="button" class="register-btn">Cadastrar</button>
-                      
-                </div>
-            </form>
+        <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+        // Usa a classe Login do namespace MeuProjeto\Login
+        use MeuProjeto\Login\Login; 
+        require 'vendor/autoload.php'; 
+
+        // Instancia a classe Login
+        $login = new Login(); 
+
+        // Verifica o login (se o formulário foi enviado)
+        $login->verificarLogin(); 
+        ?>
     </div>
-
-<?php
-// Inclui o autoload do Composer
-require 'vendor/autoload.php'; 
-
-// Usa a classe Login do namespace MeuProjeto\Login
-use MeuProjeto\Login\Login; 
-
-// Cria uma instância da classe Login
-$login = new Login(); 
-
-// Exibe o formulário de login
-$login->exibirFormulario(); 
-
-// Verifica o login (se o formulário foi enviado)
-$login->verificarLogin(); 
-?>
-
-            </form>
-        </head>     
-    </body>
+</body>
 </html>
